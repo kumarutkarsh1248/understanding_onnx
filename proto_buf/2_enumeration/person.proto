@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+//if you define a namespace in the proto file then the messages of the 
+//file can be assecced only thorught the namespace 
+package PERSON;
+
+message Person {
+    required string name = 1;
+    optional int32 id = 2;
+    optional string email = 3;
+
+    enum PhoneType{
+        UNKNOWN = 0;
+        MOBILE = 1;
+        HOME = 2;
+        WORK = 3;
+    }
+    optional PhoneType phone_type = 4;
+}

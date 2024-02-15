@@ -1,0 +1,68 @@
+syntax = "proto2";
+
+package tutorial;
+
+//A message is just an aggregate containing a set of typed fields
+message Person {
+  optional string name = 1;
+  optional int32 id = 2;
+  optional string email = 3;
+  repeated PhoneNumber phones = 4;
+
+  //fields to have one of a predefined list of values
+  enum PhoneType {
+    PHONE_TYPE_UNSPECIFIED = 0;
+    PHONE_TYPE_MOBILE = 1;
+    PHONE_TYPE_HOME = 2;
+    PHONE_TYPE_WORK = 3;
+  }
+
+  message PhoneNumber {
+    optional string number = 1;
+    optional PhoneType type = 2 [default = PHONE_TYPE_HOME];
+  }
+}
+
+message AddressBook {
+  repeated Person people = 1;
+}
+
+
+// methods associated with fields
+/*
+string : has_name()
+         clear_name()
+         name()
+         set_name(string)
+         set_name(char)
+         mutable_name()
+*/
+/*
+int :  has_id()
+       clear_id()
+       id()
+       set_id()
+*/
+/*
+repeated : phone_size()
+           clear_phones()
+           phones()
+           mutable_phones()
+           phones(index)
+           mutable_phones(index)
+           add_phones()
+*/
+
+
+// methods assiciated with message
+/*
+bool IsInitialized() => checks if all the required fields have been set.
+string DebugString() => returns a human-readable representation of the message, particularly useful for debugging.
+void CopyFrom(const Person& from) => overwrites the message with the given message’s values.
+void Clear() => clears all the elements back to the empty state.
+*/
+
+// parsing and serialization 
+/*
+
+*/

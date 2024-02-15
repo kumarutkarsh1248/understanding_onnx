@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+//if you define a namespace in the proto file then the messages of the 
+//file can be assecced only thorught the namespace 
+package PERSON;
+
+message Person {
+    required string name = 1;
+    optional int32 id = 2;
+    optional string email = 3;
+}
+
+message AddressBook {
+    repeated Person people = 1;
+}
