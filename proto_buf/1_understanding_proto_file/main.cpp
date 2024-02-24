@@ -15,7 +15,7 @@ int main()
     //person2 info
     string name2  = "kumar";
     int id2 = 02;
-    string email2 = "@g_amil.com";
+    string email2 = "@gamil.com";
 
     //setting name, id, email field int he person message
     person1.set_name(name1);
@@ -32,17 +32,17 @@ int main()
     address_book.add_people()->CopyFrom(person1);
     address_book.add_people()->CopyFrom(person2);
 
-    //populating the address book
+    // populating the address book
     // address_book.add_people()->set_id(10000);  //3rd person
     // address_book.add_people()->set_name("sahil");  //4th person
-    cout<< " ---------------------------------"<<endl;
+    cout<< "---------------------------------"<<endl;
 
     //accessing the data
     cout<<" peson1 detail\n"<< address_book.people(0).DebugString() <<endl;
     cout<<" peson2 detail \n"<< address_book.people(1).DebugString() <<endl;
     cout<< " --------------------------------"<< endl;
 
-    //we can also prin the details like
+    //we can also print the details like
     for (int i =0; i<address_book.people_size(); i++)
     {
         cout<< address_book.mutable_people(i)->DebugString() <<endl;

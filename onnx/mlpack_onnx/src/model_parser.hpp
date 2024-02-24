@@ -48,6 +48,7 @@
 #include <boost/foreach.hpp>
 
 #include</home/kumarutkarsh/Desktop/mlpack/build/installdir/include/mlpack/namespace_compat.hpp>
+#include<layer_details.hpp>
 
 using namespace mlpack;
 using namespace ann;

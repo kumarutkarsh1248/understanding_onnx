@@ -27,6 +27,7 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
   map<string, double> mappedParams;
   map<string, string> operatorMap;
   // keys are onnx operators, values are the corresponding mlpack layer names
+  //https://github.com/onnx/onnx/blob/main/docs/Operators.md
   operatorMap = {
       {"BatchNormalization", "batchnorm"},
       {"ConstantOfShape", "constant"},// probably this and not Constant
@@ -50,9 +51,14 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
       //{"Softsign", "softsign"},// Needs to be defined in the parser
       {"Tanh", "tanh"}
   };
-  map<string, map<string, vector<string>>> mappedNames;
+
+  // {string, {string, vector}}
+  map<string, map<string, vector<string> > > mappedNames;
   //mappedNames["BatchNormalization"]; // Needs fixing
+
+  //17 mapped names has already been defined
   mappedNames["Conv"] = {
+      //string, vector
       {"kernel_shape", {"kh", "kw"}},
       {"pads", {"padh", "padw"}},
       {"strides", {"dh", "dw"}}
@@ -104,6 +110,10 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
   mappedNames["Softsign"];// not yet implemented in the parser
 
   mappedNames["Tanh"];
+
+
+
+
 
   map<string, vector<string>> layer = mappedNames[layerType];
   /*stores the attributes which can be calculated
