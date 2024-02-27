@@ -24,8 +24,7 @@ using namespace mlpack::ann;
  * Implementation of a class that returns the string representation of the
  * name of the given layer.
  */
-class LayerTypeVisitor :
-    public boost::static_visitor<std::unordered_map<std::string, double> >
+class LayerTypeVisitor : public boost::static_visitor<std::unordered_map<std::string, double> >
 {
  public:
   //! Create the LayerNameVisitor object.

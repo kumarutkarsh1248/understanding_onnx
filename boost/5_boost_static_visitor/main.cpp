@@ -2,7 +2,7 @@
 #include <boost/variant.hpp>
 
 // Define a visitor class that defines overloaded operator() for each type
-class MyVisitor : public boost::static_visitor<void> {
+class MyVisitor : public boost::static_visitor<int> {
 public:
     void operator()(int value) const {
         std::cout << "Integer value: " << value << std::endl;
@@ -14,6 +14,11 @@ public:
 
     void operator()(const std::string& value) const {
         std::cout << "String value: " << value << std::endl;
+    }
+
+    int operator()(const std::string& value) const {
+        std::cout << "String value: " << value << std::endl;
+        return 1;
     }
 };
 

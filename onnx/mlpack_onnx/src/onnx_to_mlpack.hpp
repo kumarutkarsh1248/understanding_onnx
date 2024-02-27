@@ -28,6 +28,7 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
   map<string, string> operatorMap;
   // keys are onnx operators, values are the corresponding mlpack layer names
   //https://github.com/onnx/onnx/blob/main/docs/Operators.md
+  // {onnx_operator, mlpack_opertor}
   operatorMap = {
       {"BatchNormalization", "batchnorm"},
       {"ConstantOfShape", "constant"},// probably this and not Constant
@@ -120,6 +121,35 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
   only after knowing the other ones*/
   vector<string> skippedAttributes;
 
+  // node {
+  //   input: "ReLU402_Output_0"
+  //   output: "Pooling404_Output_0"
+  //   name: "Pooling66"
+  //   op_type: "MaxPool"
+  //   attribute {
+  //     name: "kernel_shape"
+  //     ints: 2
+  //     ints: 2
+  //     type: INTS
+  //   }
+  //   attribute {
+  //     name: "strides"
+  //     ints: 2
+  //     ints: 2
+  //     type: INTS
+  //   }
+  //   attribute {
+  //     name: "pads"
+  //     ints: 0
+  //     ints: 0
+  //     ints: 0
+  //     ints: 0
+  //     type: INTS
+  //   }
+  //   doc_string: ""
+  //   domain: ""
+  // }
+  
   for (AttributeProto attribute:node.attribute())
   {
     string attrName = attribute.name();
@@ -137,7 +167,8 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
     else if (attrName == "auto_pad")
     {
       // P = ((S-1)*W-S+F)/2
-      skippedAttributes.push_back("auto_pad_" + attribute.s());
+      // It calculates symmetric padding, meaning the same amount of padding is added on both sides.
+      skippedAttributes.push_back("auto_pad_" + attribute.s());   //will be like auto_pad_sameupper
     }
     int i = 0;
     // validation needs to be added
@@ -172,13 +203,8 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
   {
     if (attribute ==  "auto_pad_SAME")
     {
-      mappedParams["padw"] = (int) ((mappedParams["inputwidth"] *
-      (mappedParams["dw"] - 1) - mappedParams["dw"] +
-      mappedParams["kw"] + 1) / 2);
-
-      mappedParams["padh"] = (int) ((mappedParams["inputheight"] *
-      (mappedParams["dh"] - 1) - mappedParams["dh"] +
-      mappedParams["kh"] + 1) / 2);
+      mappedParams["padw"] = (int) ((mappedParams["inputwidth"] * (mappedParams["dw"] - 1) - mappedParams["dw"] + mappedParams["kw"] + 1) / 2);
+      mappedParams["padh"] = (int) ((mappedParams["inputheight"] * (mappedParams["dh"] - 1) - mappedParams["dh"] + mappedParams["kh"] + 1) / 2);
     }
     else if (attribute == "auto_pad_VALID") // not absolutely necessary though as the default is zero pad
     {
@@ -189,11 +215,8 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
   // store dimensional details for the next layer if needed
   if(layerType == "Conv")
   {
-    storedParams["inputwidth"] = (mappedParams["inputwidth"] -
-    mappedParams["kw"] + 2 * mappedParams["padw"]) / mappedParams["dw"] + 1;
-
-    storedParams["inputheight"] = (mappedParams["inputheight"] -
-    mappedParams["kh"] + 2 * mappedParams["padh"]) / mappedParams["dh"] + 1;
+    storedParams["inputwidth"] = (mappedParams["inputwidth"] - mappedParams["kw"] + 2 * mappedParams["padw"]) / mappedParams["dw"] + 1;
+    storedParams["inputheight"] = (mappedParams["inputheight"] - mappedParams["kh"] + 2 * mappedParams["padh"]) / mappedParams["dh"] + 1;
   }
   cout << "Layer type of mlpack model: " << operatorMap[layerType] << "\nLayer map:\n";
   printMap(mappedParams);

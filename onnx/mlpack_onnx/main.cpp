@@ -9,16 +9,14 @@
 
 
 
-
+#include<mlpack.hpp>
 #include <iostream>
-#include <memory>
-#include <string>
 
-#include "model_parser.hpp"
+// #include "model_parser.hpp"
 
-using namespace onnx;
-using namespace mlpack;
-using namespace ann;
+// using namespace onnx;
+// using namespace mlpack;
+// using namespace ann;
 using namespace std;
 
 map<string, double> storedParams;
@@ -26,5 +24,5 @@ map<string, double> storedParams;
 
 int main()
 {
-    LayerTypes<> layer;
+    mlpack::LayerTypes<> layer;
 }
