@@ -72,6 +72,15 @@ arma::mat Dataset::getValidY()
   return validY;
 }
 
+
+
+
+
+
+
+
+
+
 void printMap(std::map<std::string, double> params)
 {
   std::map<std::string, double>::iterator itr;
@@ -80,6 +89,18 @@ void printMap(std::map<std::string, double> params)
     Log::Info << itr->first << " : " << itr->second << "\n";
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 void updateParams(std::map<std::string, double> &origParams,
                   std::map<std::string, double> &newParams)
@@ -102,6 +123,20 @@ void updateParams(std::map<std::string, double> &origParams,
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 arma::Row<size_t> getLabels(const arma::mat& predOut)
 {
   arma::Row<size_t> pred(predOut.n_cols);
@@ -117,6 +152,21 @@ arma::Row<size_t> getLabels(const arma::mat& predOut)
   return pred;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 double accuracy(arma::Row<size_t> predLabels, const arma::mat& realY)
 {
   // Calculating how many predicted classes are coincide with real labels.
@@ -127,6 +177,24 @@ double accuracy(arma::Row<size_t> predLabels, const arma::mat& realY)
   // Calculating percentage of correctly classified data points.
   return (double)success / (double)realY.n_cols * 100.0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 template <typename OptimizerType, typename LossType, typename InitType>
 void trainModel(OptimizerType optimizer, FFN<LossType, InitType> model,
@@ -184,6 +252,27 @@ void trainModel(OptimizerType optimizer, FFN<LossType, InitType> model,
       " valid = "<< validAccuracy << "%" <<  "\n";
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 template <typename LossType, typename InitType>
 void createModel(LossType& loss,
@@ -474,6 +563,27 @@ void createModel(LossType& loss,
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 template <typename InitType>
 void getLossType(InitType& init,
                  std::string& lossType, std::string& optimizerType,
@@ -562,6 +672,22 @@ void getLossType(InitType& init,
     Log::Fatal << "Invalid loss type\n";
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void getInitType(std::string& initType, std::string& lossType,
                  std::map<std::string, double>& initParams,
@@ -669,6 +795,15 @@ void getInitType(std::string& initType, std::string& lossType,
   }
 }
 
+
+
+
+
+
+
+
+
+
 // Simple mapping of string padding types to double.
 std::string decodePadType(double val)
 {
@@ -679,6 +814,24 @@ std::string decodePadType(double val)
   else
     return "Same";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 LayerTypes<> getNetworkReference(std::string& layerType,
                                  std::map<std::string, double>& layerParams)
@@ -907,6 +1060,23 @@ LayerTypes<> getNetworkReference(std::string& layerType,
   return layer;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void traverseModel(const boost::property_tree::ptree& tree,
                    Dataset& dataset, double& inSize)
 {
@@ -1005,6 +1175,31 @@ void traverseModel(const boost::property_tree::ptree& tree,
   getInitType(initType, lossType, initParams, lossParams,
       optimizerType, optimizerDetails, layers, dataset);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 boost::property_tree::ptree loadProperties(std::string& fileName,
                                            Dataset& dataset, double inSize)

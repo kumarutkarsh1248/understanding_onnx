@@ -4,12 +4,12 @@ syntax = "proto2";
 //file can be assecced only thorught the namespace 
 package PERSON;
 
-message Person {
+message PersonProto {
     required string name = 1;
     optional int32 id = 2;
     optional string email = 3;
 }
 
 message AddressBook {
-    repeated Person people = 1;
+    repeated PersonProto people = 1;
 }

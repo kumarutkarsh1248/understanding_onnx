@@ -96,6 +96,10 @@ class Dataset
       * @param trainX Training input
       * @param trainY Correct output/labels for the training input data
       */
+
+
+
+
     void setTrainSet(arma::mat& trainX, arma::mat& trainY);
     /**
       * Set the values of the validation dataset and its corresponding output
@@ -124,6 +128,16 @@ class Dataset
     arma::mat getValidY();
 };
 
+
+
+
+
+
+
+
+
+
+
 /**
  * Print the given stl map where the keys are of type string and
  * values are of type double
@@ -141,6 +155,15 @@ void printMap(std::map<std::string, double> params);
  * @param origParams The map whose values will be updated
  * @param newParams The map whose values will be used to update origParams
  */
+
+
+
+
+
+
+
+
+
 void updateParams(std::map<std::string, double> &origParams,
                   std::map<std::string, double> &newParams);
 
@@ -254,6 +277,21 @@ void getInitType(std::string& initType, std::string& lossType,
                  std::queue<LayerTypes<> >& layers,
                  Dataset& dataset);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Determine the layer type to be added to a feedforward network given a
  * string containing the type and a map containing the parameters
@@ -265,6 +303,24 @@ void getInitType(std::string& initType, std::string& lossType,
  */
 LayerTypes<> getNetworkReference(std::string& layerType, std::map<std::string,
                                  double>& layerParams);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Traverse the given property tree and determine the loss function,

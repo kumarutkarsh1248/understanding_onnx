@@ -1,0 +1,11 @@
+Int: Represents a signed 32-bit integer value.
+Float: Represents a 32-bit floating-point value.
+String: Represents a string value.
+Tensor: Represents a tensor value.
+Graph: Represents a nested graph.
+SparseTensor: Represents a sparse tensor value.
+Floats: Represents an array of floating-point values.
+Ints: Represents an array of signed 32-bit integer values.
+Strings: Represents an array of string values.
+Tensors: Represents an array of tensor values.
+Graphs: Represents an array of nested graphs.

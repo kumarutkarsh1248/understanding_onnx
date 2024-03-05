@@ -13,10 +13,21 @@ using namespace std;
 
 map<string, double> storedParams;
 
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Get the mlpack layer associated with the given layer type
  * instantiated with the given parameters
- *
+ * 
  * @param node The ONNX node containing the layer attributes
  * @param dimParams The map containing information about the
  * dimensions of the layer
@@ -224,6 +235,23 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
   return getNetworkReference(operatorMap[layerType], mappedParams);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Get the input size of each layer and the output size of the last layer in
  * a vector
@@ -233,16 +261,23 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
  * @return The number of nodes in each layer
  */
 std::vector<int> findWeightDims
+// const ::google::protobuf::RepeatedPtrField => when multiple repeated message is to be hold
 (const ::google::protobuf::RepeatedPtrField< ::onnx::TensorProto>& weights)
 {
+
   std::vector<int> dims;
   auto itr = std::begin(weights);
+
+  //*itr => first tenserproto
+  //dim is repeated type
   if ((*itr).dims().size() > 2)
   {
     dims.push_back((*itr).dims(1));
     dims.push_back((*itr).dims(0));
-    itr += 2;
+    itr += 2; //may be after weight we would have bias term so +=2
   }
+
+  
   for (; itr != std::end(weights); itr += 2)
   {
     if ((*itr).dims().size() == 0)
@@ -258,6 +293,23 @@ std::vector<int> findWeightDims
   dims.push_back((*itr).dims(1));
   return dims;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Transfer the weights of the ONNX model to the mlpack model
@@ -313,6 +365,21 @@ void extractWeights(GraphProto& graph, arma::mat& weightMatrix)
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Get the mlpack equivalent model of a given ONNX model without
  * the transfer of weights
@@ -337,6 +404,7 @@ FFN<> generateModel(GraphProto& graph)
     std::map<std::vector<string>, string> mergeLayers = {
         {{"MatMul", "Add"}, "Transformed_linear"}
         };
+
     std::map<std::vector<string>, string>::iterator mergeItr;
     for (mergeItr = mergeLayers.begin(); mergeItr != mergeLayers.end(); ++mergeItr)
     {
@@ -351,7 +419,8 @@ FFN<> generateModel(GraphProto& graph)
       //cout << "i= " << i << " mergeVector.size()= " << mergeVector.size() << "\n";
       if (i == mergeVector.size())
       {
-        nodeItr += i;
+
+      nodeItr += i;
         nodeType = mergeItr -> second;
       }
     }
@@ -377,6 +446,17 @@ FFN<> generateModel(GraphProto& graph)
   return mod;
 }
 
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Convert the ONNX model in a given path to an mlpack model and save it
  *
@@ -396,6 +476,18 @@ void convert(string& inFileName, string& outFileName)
   data::Save(outFileName, "mlpack_model_converted_from_onnx", ffnModel);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Convert the ONNX non-convolutionl model in a given path to
  * an mlpack model and save it
@@ -407,6 +499,17 @@ void convertModel(string inFileName, string outFileName)
 {
   convert(inFileName, outFileName);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Convert the ONNX convolutional model in a given path to an

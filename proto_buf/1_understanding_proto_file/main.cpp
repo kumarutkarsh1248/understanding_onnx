@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    PERSON::Person person1, person2, person3, person4;
+    PERSON::PersonProto person1, person2, person3, person4;
 
     //person1 info
     string name1  = "utkarsh";
@@ -39,6 +39,7 @@ int main()
 
     //accessing the data
     cout<<" peson1 detail\n"<< address_book.people(0).DebugString() <<endl;
+    cout<<" peson1 detail whole addressbook\n"<< address_book.DebugString() <<endl;
     cout<<" peson2 detail \n"<< address_book.people(1).DebugString() <<endl;
     cout<< " --------------------------------"<< endl;
 

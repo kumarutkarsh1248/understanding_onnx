@@ -14,12 +14,12 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_person_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Person_person_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_person_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_PersonProto_person_2eproto;
 namespace PERSON {
-class PersonDefaultTypeInternal {
+class PersonProtoDefaultTypeInternal {
  public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Person> _instance;
-} _Person_default_instance_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<PersonProto> _instance;
+} _PersonProto_default_instance_;
 class AddressBookDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<AddressBook> _instance;
@@ -38,35 +38,35 @@ static void InitDefaultsscc_info_AddressBook_person_2eproto() {
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_AddressBook_person_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_AddressBook_person_2eproto}, {
-      &scc_info_Person_person_2eproto.base,}};
+      &scc_info_PersonProto_person_2eproto.base,}};
 
-static void InitDefaultsscc_info_Person_person_2eproto() {
+static void InitDefaultsscc_info_PersonProto_person_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::PERSON::_Person_default_instance_;
-    new (ptr) ::PERSON::Person();
+    void* ptr = &::PERSON::_PersonProto_default_instance_;
+    new (ptr) ::PERSON::PersonProto();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::PERSON::Person::InitAsDefaultInstance();
+  ::PERSON::PersonProto::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Person_person_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Person_person_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_PersonProto_person_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_PersonProto_person_2eproto}, {}};
 
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_person_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_person_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_person_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_person_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  PROTOBUF_FIELD_OFFSET(::PERSON::Person, _has_bits_),
-  PROTOBUF_FIELD_OFFSET(::PERSON::Person, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::PERSON::PersonProto, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::PERSON::PersonProto, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::PERSON::Person, name_),
-  PROTOBUF_FIELD_OFFSET(::PERSON::Person, id_),
-  PROTOBUF_FIELD_OFFSET(::PERSON::Person, email_),
+  PROTOBUF_FIELD_OFFSET(::PERSON::PersonProto, name_),
+  PROTOBUF_FIELD_OFFSET(::PERSON::PersonProto, id_),
+  PROTOBUF_FIELD_OFFSET(::PERSON::PersonProto, email_),
   0,
   2,
   1,
@@ -78,29 +78,30 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_person_2eproto::offsets[] PROT
   PROTOBUF_FIELD_OFFSET(::PERSON::AddressBook, people_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, 8, sizeof(::PERSON::Person)},
+  { 0, 8, sizeof(::PERSON::PersonProto)},
   { 11, -1, sizeof(::PERSON::AddressBook)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::PERSON::_Person_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::PERSON::_PersonProto_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::PERSON::_AddressBook_default_instance_),
 };
 
 const char descriptor_table_protodef_person_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014person.proto\022\006PERSON\"1\n\006Person\022\014\n\004name"
-  "\030\001 \002(\t\022\n\n\002id\030\002 \001(\005\022\r\n\005email\030\003 \001(\t\"-\n\013Add"
-  "ressBook\022\036\n\006people\030\001 \003(\0132\016.PERSON.Person"
+  "\n\014person.proto\022\006PERSON\"6\n\013PersonProto\022\014\n"
+  "\004name\030\001 \002(\t\022\n\n\002id\030\002 \001(\005\022\r\n\005email\030\003 \001(\t\"2"
+  "\n\013AddressBook\022#\n\006people\030\001 \003(\0132\023.PERSON.P"
+  "ersonProto"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_person_2eproto_deps[1] = {
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_person_2eproto_sccs[2] = {
   &scc_info_AddressBook_person_2eproto.base,
-  &scc_info_Person_person_2eproto.base,
+  &scc_info_PersonProto_person_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_person_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_person_2eproto = {
-  false, false, descriptor_table_protodef_person_2eproto, "person.proto", 120,
+  false, false, descriptor_table_protodef_person_2eproto, "person.proto", 130,
   &descriptor_table_person_2eproto_once, descriptor_table_person_2eproto_sccs, descriptor_table_person_2eproto_deps, 2, 0,
   schemas, file_default_instances, TableStruct_person_2eproto::offsets,
   file_level_metadata_person_2eproto, 2, file_level_enum_descriptors_person_2eproto, file_level_service_descriptors_person_2eproto,
@@ -112,11 +113,11 @@ namespace PERSON {
 
 // ===================================================================
 
-void Person::InitAsDefaultInstance() {
+void PersonProto::InitAsDefaultInstance() {
 }
-class Person::_Internal {
+class PersonProto::_Internal {
  public:
-  using HasBits = decltype(std::declval<Person>()._has_bits_);
+  using HasBits = decltype(std::declval<PersonProto>()._has_bits_);
   static void set_has_name(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -131,13 +132,13 @@ class Person::_Internal {
   }
 };
 
-Person::Person(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+PersonProto::PersonProto(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
   RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:PERSON.Person)
+  // @@protoc_insertion_point(arena_constructor:PERSON.PersonProto)
 }
-Person::Person(const Person& from)
+PersonProto::PersonProto(const PersonProto& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -152,45 +153,45 @@ Person::Person(const Person& from)
       GetArena());
   }
   id_ = from.id_;
-  // @@protoc_insertion_point(copy_constructor:PERSON.Person)
+  // @@protoc_insertion_point(copy_constructor:PERSON.PersonProto)
 }
 
-void Person::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Person_person_2eproto.base);
+void PersonProto::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_PersonProto_person_2eproto.base);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   email_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   id_ = 0;
 }
 
-Person::~Person() {
-  // @@protoc_insertion_point(destructor:PERSON.Person)
+PersonProto::~PersonProto() {
+  // @@protoc_insertion_point(destructor:PERSON.PersonProto)
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-void Person::SharedDtor() {
+void PersonProto::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
   name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   email_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
-void Person::ArenaDtor(void* object) {
-  Person* _this = reinterpret_cast< Person* >(object);
+void PersonProto::ArenaDtor(void* object) {
+  PersonProto* _this = reinterpret_cast< PersonProto* >(object);
   (void)_this;
 }
-void Person::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+void PersonProto::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
 }
-void Person::SetCachedSize(int size) const {
+void PersonProto::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Person& Person::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Person_person_2eproto.base);
+const PersonProto& PersonProto::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_PersonProto_person_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void Person::Clear() {
-// @@protoc_insertion_point(message_clear_start:PERSON.Person)
+void PersonProto::Clear() {
+// @@protoc_insertion_point(message_clear_start:PERSON.PersonProto)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -209,7 +210,7 @@ void Person::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* Person::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* PersonProto::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   _Internal::HasBits has_bits{};
   ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
@@ -224,7 +225,7 @@ const char* Person::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
           auto str = _internal_mutable_name();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           #ifndef NDEBUG
-          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PERSON.Person.name");
+          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PERSON.PersonProto.name");
           #endif  // !NDEBUG
           CHK_(ptr);
         } else goto handle_unusual;
@@ -243,7 +244,7 @@ const char* Person::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
           auto str = _internal_mutable_email();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           #ifndef NDEBUG
-          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PERSON.Person.email");
+          ::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "PERSON.PersonProto.email");
           #endif  // !NDEBUG
           CHK_(ptr);
         } else goto handle_unusual;
@@ -271,9 +272,9 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* Person::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* PersonProto::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:PERSON.Person)
+  // @@protoc_insertion_point(serialize_to_array_start:PERSON.PersonProto)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -283,7 +284,7 @@ failure:
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::VerifyUTF8StringNamedField(
       this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SERIALIZE,
-      "PERSON.Person.name");
+      "PERSON.PersonProto.name");
     target = stream->WriteStringMaybeAliased(
         1, this->_internal_name(), target);
   }
@@ -299,7 +300,7 @@ failure:
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::VerifyUTF8StringNamedField(
       this->_internal_email().data(), static_cast<int>(this->_internal_email().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::SERIALIZE,
-      "PERSON.Person.email");
+      "PERSON.PersonProto.email");
     target = stream->WriteStringMaybeAliased(
         3, this->_internal_email(), target);
   }
@@ -308,12 +309,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:PERSON.Person)
+  // @@protoc_insertion_point(serialize_to_array_end:PERSON.PersonProto)
   return target;
 }
 
-size_t Person::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:PERSON.Person)
+size_t PersonProto::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:PERSON.PersonProto)
   size_t total_size = 0;
 
   // required string name = 1;
@@ -352,23 +353,23 @@ size_t Person::ByteSizeLong() const {
   return total_size;
 }
 
-void Person::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:PERSON.Person)
+void PersonProto::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:PERSON.PersonProto)
   GOOGLE_DCHECK_NE(&from, this);
-  const Person* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Person>(
+  const PersonProto* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<PersonProto>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:PERSON.Person)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:PERSON.PersonProto)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:PERSON.Person)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:PERSON.PersonProto)
     MergeFrom(*source);
   }
 }
 
-void Person::MergeFrom(const Person& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:PERSON.Person)
+void PersonProto::MergeFrom(const PersonProto& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:PERSON.PersonProto)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
@@ -389,26 +390,26 @@ void Person::MergeFrom(const Person& from) {
   }
 }
 
-void Person::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:PERSON.Person)
+void PersonProto::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:PERSON.PersonProto)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void Person::CopyFrom(const Person& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:PERSON.Person)
+void PersonProto::CopyFrom(const PersonProto& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:PERSON.PersonProto)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool Person::IsInitialized() const {
+bool PersonProto::IsInitialized() const {
   if (_Internal::MissingRequiredFields(_has_bits_)) return false;
   return true;
 }
 
-void Person::InternalSwap(Person* other) {
+void PersonProto::InternalSwap(PersonProto* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   swap(_has_bits_[0], other->_has_bits_[0]);
@@ -417,7 +418,7 @@ void Person::InternalSwap(Person* other) {
   swap(id_, other->id_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata Person::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata PersonProto::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -491,7 +492,7 @@ const char* AddressBook::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // repeated .PERSON.Person people = 1;
+      // repeated .PERSON.PersonProto people = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr -= 1;
@@ -531,7 +532,7 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .PERSON.Person people = 1;
+  // repeated .PERSON.PersonProto people = 1;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_people_size()); i < n; i++) {
     target = stream->EnsureSpace(target);
@@ -555,7 +556,7 @@ size_t AddressBook::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .PERSON.Person people = 1;
+  // repeated .PERSON.PersonProto people = 1;
   total_size += 1UL * this->_internal_people_size();
   for (const auto& msg : this->people_) {
     total_size +=
@@ -629,8 +630,8 @@ void AddressBook::InternalSwap(AddressBook* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace PERSON
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::PERSON::Person* Arena::CreateMaybeMessage< ::PERSON::Person >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::PERSON::Person >(arena);
+template<> PROTOBUF_NOINLINE ::PERSON::PersonProto* Arena::CreateMaybeMessage< ::PERSON::PersonProto >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::PERSON::PersonProto >(arena);
 }
 template<> PROTOBUF_NOINLINE ::PERSON::AddressBook* Arena::CreateMaybeMessage< ::PERSON::AddressBook >(Arena* arena) {
   return Arena::CreateMessageInternal< ::PERSON::AddressBook >(arena);

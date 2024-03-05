@@ -21,6 +21,8 @@ using namespace std;
 
 map<string, double> storedParams;
 
+
+
 void printMap(std::map<std::string, double> params)
 {
   std::map<std::string, double>::iterator itr;
@@ -29,6 +31,28 @@ void printMap(std::map<std::string, double> params)
     Log::Info << itr->first << " : " << itr->second << "\n";
   }
 }
+
+
+
+void printVector(vector<string> v)
+{
+  cout<<"vector::";
+  for(auto element:v)
+  {
+    
+    cout<<element<<" ";
+  }
+  cout<<endl;
+}
+
+
+
+
+
+
+
+
+
 
 
 /**
@@ -144,28 +168,37 @@ void getLayer(const NodeProto& node, string layerType, map<string, double>& dimP
   vector<string> skippedAttributes;
 
   // node {
-  //   input: "ReLU402_Output_0"
-  //   output: "Pooling404_Output_0"
-  //   name: "Pooling66"
-  //   op_type: "MaxPool"
+  //   input: "Block386_Output_0"
+  //   input: "Constant321"
+  //   output: "Convolution396_Output_0"
+  //   name: "Convolution28"
+  //   op_type: "Conv"
   //   attribute {
   //     name: "kernel_shape"
-  //     ints: 2
-  //     ints: 2
+  //     ints: 5
+  //     ints: 5
   //     type: INTS
   //   }
   //   attribute {
   //     name: "strides"
-  //     ints: 2
-  //     ints: 2
+  //     ints: 1
+  //     ints: 1
   //     type: INTS
   //   }
   //   attribute {
-  //     name: "pads"
-  //     ints: 0
-  //     ints: 0
-  //     ints: 0
-  //     ints: 0
+  //     name: "auto_pad"
+  //     s: "SAME_UPPER"
+  //     type: STRING
+  //   }
+  //   attribute {
+  //     name: "group"
+  //     i: 1
+  //     type: INT
+  //   }
+  //   attribute {
+  //     name: "dilations"
+  //     ints: 1
+  //     ints: 1
   //     type: INTS
   //   }
   //   doc_string: ""
@@ -178,10 +211,24 @@ void getLayer(const NodeProto& node, string layerType, map<string, double>& dimP
   for (AttributeProto attribute:node.attribute())
   {
     string attrName = attribute.name();
-    vector<string> attr = layer[attrName];
-    vector<string>::iterator itr;
 
+    cout<<attrName<<" attribute_type "<< attribute.type()<<" attribute_INT "<< attribute.INT<<endl;
+    cout<<" attribute_INT "<< attribute.INT<<endl;
+    cout<<" attribute_INTS "<< attribute.INTS<<endl;
+    cout<<" attribute_FLOAT "<< attribute.FLOAT<<endl;
+    cout<<" attribute_FLOATS "<< attribute.FLOATS<<endl;
+    cout<<" attribute_ITENSOR "<< attribute.TENSOR<<endl;
+    cout<<" attribute_TENSORS "<< attribute.TENSORS<<endl;
+    //like layer["kernel_shape"] => {"kh", "kw"}
+    vector<string> attr = layer[attrName];
+    // printVector(attr);
+
+    vector<string>::iterator itr;
     //check for special cases
+    // onnx provide 4 values for padding but mlpack require only two padh, padw
+
+
+
     if (attrName == "pads")
     {
       // [0 1 2 3] indices are top, bottom, left, right respectively
@@ -195,6 +242,12 @@ void getLayer(const NodeProto& node, string layerType, map<string, double>& dimP
       // It calculates symmetric padding, meaning the same amount of padding is added on both sides.
       skippedAttributes.push_back("auto_pad_" + attribute.s());   //will be like auto_pad_sameupper
     }
+
+
+
+
+
+
     int i = 0;
     // validation needs to be added
     for (itr = attr.begin(); itr < attr.end(); ++itr, ++i)
@@ -218,11 +271,17 @@ void getLayer(const NodeProto& node, string layerType, map<string, double>& dimP
     }
   }
 
+
+
+
+
+
   map<string, double>::iterator itr;
   for (itr = dimParams.begin(); itr != dimParams.end(); ++itr)
   {
     mappedParams[itr->first] = itr->second;
   }
+
 
   for (string& attribute:skippedAttributes)
   {
@@ -237,6 +296,8 @@ void getLayer(const NodeProto& node, string layerType, map<string, double>& dimP
       mappedParams["padh"] = 0;
     }
   }
+
+
   // store dimensional details for the next layer if needed
   if(layerType == "Conv")
   {
@@ -246,7 +307,9 @@ void getLayer(const NodeProto& node, string layerType, map<string, double>& dimP
   cout << "Layer type of mlpack model: " << operatorMap[layerType] << "\nLayer map:\n";
   printMap(mappedParams);
   cout << "\n\n";
-//   return getNetworkReference(operatorMap[layerType], mappedParams);
+
+
+  // return getNetworkReference(operatorMap[layerType], mappedParams);
 }
 
 
@@ -258,59 +321,50 @@ int main()
 {
 
     onnx::ModelProto onnxModel;
-    std::ifstream in("mnist.onnx", std::ios_base::binary);
+    std::ifstream in("feastconv_Opset18.onnx", std::ios_base::binary);
     onnxModel.ParseFromIstream(&in);
     in.close();
 
-    map<string, double> dim_param;
+    // map<string, double> dim_param;
     onnx::GraphProto graph = onnxModel.graph();
 
 
-    // Iterate through all nodes in the graph
-    for (const onnx::NodeProto& node : graph.node()) {
+    cout<<graph.initializer(0).DebugString()<<endl;
 
 
-
-        getLayer(node, "Conv", dim_param);
-        break;
-
+    // // Iterate through all nodes in the graph
+    // for (const onnx::NodeProto& node : graph.node()) {
 
 
+    //     cout<<node.op_type()<<"***********"<<endl;
+    //     getLayer(node, "Conv", dim_param);
+    //     cout<<"\n\n"<<endl;
+    //     break;
+    // }
 
 
-        // cout<<"\n\n"<<endl;
-        // // Access information about each node
-        // std::string nodeName = node.name();
-        // std::string opType = node.op_type();
-        // std::cout << "Node Name: " << nodeName << ", Operator Type: " << opType << std::endl;
-
-        // // Access inputs and outputs of the node
-        // for (const std::string& input : node.input()) {
-        //     std::cout << "Input: " << input << std::endl;
-        // }
-        // for (const std::string& output : node.output()) {
-        //     std::cout << "Output: " << output << std::endl;
-        // }
-
-        // // Access attributes of the node
-        // for (const onnx::AttributeProto& attr : node.attribute()) {
-        //     std::string attrName = attr.name();
-        //     std::cout << "Attribute Name: " << attrName << std::endl;
-        //     // Handle different types of attributes accordingly
-        //     // For example:
-        //     // if (attr.type() == AttributeProto_AttributeType_INT) {
-        //     //     int attrValue = attr.i();
-        //     //     std::cout << "Attribute Value (INT): " << attrValue << std::endl;
-        //     // }
-        // }
-    }
+  // onnx::AttributeProto att;
+  // cout<<att.FLOAT<<endl; //1
+  // cout<<att.INT<<endl; //2
+  // cout<<att.STRING<<endl; //3
+  // cout<<att.TENSOR<<endl; //4
+  // cout<<att.FLOATS<<endl;//6
+  // cout<<att.INTS<<endl; //7
+  // cout<<att.STRINGS<<endl; //8
+  // cout<<att.TENSORS<<endl; //9
 
 
-    // getLayer(const NodeProto& node, string layerType, map<string, double>& dimParams);
-    // getLayer(const NodeProto& node, string layerType, map<string, double>& dimParams);
+  // onnx::AttributeProto att;
+  // cout<<onnx::AttributeProto::FLOAT<<endl; //1
+  // cout<<onnx::AttributeProto::INT<<endl; //2
+  // cout<<onnx::AttributeProto::STRING<<endl; //3
+  // cout<<onnx::AttributeProto::TENSOR<<endl; //4
+  // cout<<onnx::AttributeProto::FLOATS<<endl;//6
+  // cout<<onnx::AttributeProto::INTS<<endl; //7
+  // cout<<onnx::AttributeProto::STRINGS<<endl; //8
+  // cout<<onnx::AttributeProto::TENSORS<<endl; //9
 
 
-    printMap(storedParams);
 
 
     return 0;
