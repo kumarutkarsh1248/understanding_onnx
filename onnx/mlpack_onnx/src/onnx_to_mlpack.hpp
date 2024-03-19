@@ -42,12 +42,12 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
   // {onnx_operator, mlpack_opertor}
   operatorMap = {
       {"BatchNormalization", "batchnorm"},
-      {"ConstantOfShape", "constant"},// probably this and not Constant
+      {"ConstantOfShape", "constant"},
       {"Conv", "convolution"},
       {"Dropout", "dropout"},
       {"LeakyRelu", "leakyrelu"},
       {"Transformed_linear", "linear"},
-      {"Gemm", "linear"},// needs validation
+      {"Gemm", "linear"},
       {"MatMul", "linearnobias"},
       {"LogSoftmax", "logsoftmax"},
       {"ConvTranspose", "transposedconvolution"},
@@ -60,26 +60,43 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
       {"Sigmoid", "sigmoid"},
       {"Softmax", "softmax"},
       {"LogSoftMax", "logsoftmax"},
-      //{"Softsign", "softsign"},// Needs to be defined in the parser
       {"Tanh", "tanh"}
   };
 
   // {string, {string, vector}}
   map<string, map<string, vector<string> > > mappedNames;
-  //mappedNames["BatchNormalization"]; // Needs fixing
 
-  //17 mapped names has already been defined
+  // mappedNames = {
+    {"Conv", {"kernel_shape", {"kh", "kw"}},
+            {"pads", {"padh", "padw"}},
+            {"strides", {"dh", "dw"}},
+    }
+
+  //   {"Dropout", {"ratio", {"ratio"}}},
+
+  //   {"MaxPool", {"kernel_shape", {"kh", "kw"}},
+  //               {"strides", {"dh", "dw"}}},
+
+  //   {"LeakyRelu", {"alpha", {"alpha"}}},
+
+  //   {"ConvTranspose", {"kernel_shape", {"kh", "kw"}},
+  //                     {"pads", {"padh", "padw"}},
+  //                     {"strides", {"dh", "dw"}}}
+  // }
+
+
+
+
+
   mappedNames["Conv"] = {
       //string, vector
       {"kernel_shape", {"kh", "kw"}},
       {"pads", {"padh", "padw"}},
       {"strides", {"dh", "dw"}}
   };
-
   mappedNames["Dropout"] = {
       {"ratio", {"ratio"}}
   };
-
   mappedNames["LeakyRelu"] = {
       {"alpha", {"alpha"}}
   };
@@ -130,6 +147,8 @@ LayerTypes<> getLayer(const NodeProto& node, string layerType,
   map<string, vector<string>> layer = mappedNames[layerType];
   /*stores the attributes which can be calculated
   only after knowing the other ones*/
+  // like in case of autopad we need to know the input 
+  // dimension
   vector<string> skippedAttributes;
 
   // node {

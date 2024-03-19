@@ -139,7 +139,7 @@ BaseLayer<> getNetworkReference(std::string& layerType,
     origParams["padh"] = 0;
     origParams["inputwidth"] = 0;
     origParams["inputheight"] = 0;
-    origParams["paddingtype"] = 0; // None = 0 , Valid = 1, Same = 2
+    origParams["paddingtype"] = 0;
     updateParams(origParams, layerParams);
     std::string padding = decodePadType(origParams["paddingtype"]);
     layer = new Convolution<>(origParams["insize"], origParams["outsize"],

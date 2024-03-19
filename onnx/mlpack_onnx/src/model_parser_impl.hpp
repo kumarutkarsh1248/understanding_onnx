@@ -821,6 +821,15 @@ std::string decodePadType(double val)
 
 
 
+map<string, vector<string>> mlpackParameterMap;
+mlpackParameterMap = {
+ {"convolution", {"insize", "outsize", "kw", "kh",
+                  "dw", "dh", "padw", "padh",
+                  "inputwidth", "inputheight", "dilationw",
+                  "dilationh", "paddingtype"}},
+ {"maxpooling", {"kw", "kh", "dw", "dh", "floor"}},
+ {"meanpooling", {"kw", "kh", "dw", "dh", "floor"}}
+}
 
 
 
